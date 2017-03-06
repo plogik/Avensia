@@ -1,0 +1,156 @@
+﻿@model Avensia.Data.ViewModels.ProductViewModel
+@{
+    ViewBag.Title = "Produkt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+@section Scripts
+{
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script>
+        $('#quantity').change(function (e) {
+            $('#subtotal').html(@Model.PriceNow * $('#quantity').val());
+        });
+    </script>
+}
+
+        <header>
+            <hgroup>
+                <h1>@Model.Name</h1>
+                <h4>@Model.Description</h4>
+
+            </hgroup>
+        </header>
+
+        <section class="product-card">
+
+            <figure>
+                <img src="http://placehold.it/480x480&text=Artikel">
+                <div class="thumbs">
+                    <img src="http://placehold.it/80x80&text=Bild">
+                    <img src="http://placehold.it/80x80&text=Bild">
+                    <img src="http://placehold.it/80x80&text=Bild">
+                    <img src="http://placehold.it/80x80&text=Video">
+                </div>
+                <img src="http://placehold.it/80x40&text=Märkning" class="brand">
+
+            </figure>
+
+            <section class="product-info">
+
+
+                <p class="artnr">Artikelnummer: @Model.Id</p>
+                <!--<details open>
+                    <summary>Produktegenskaper</summary>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </details>-->
+
+
+                <p class="stock"><i class="icon-check"></i> Finns i lager</p>
+
+                <div class="prices">
+                    
+                    
+                    @if (Model.Price > Model.PriceNow)
+                    {
+                        <p class="reg-price">Ord. pris @Model.Price kr/st</p>
+                        <p class="best-price">@Model.PriceNow kr/st</p>
+                    }
+                    else
+                    {
+                        <p class="reg-price">@Model.Price kr/st</p>
+                    }
+                    <p><span id="subtotal">@Model.PriceNow</span> kr</p>
+                </div>
+
+
+
+
+                <input type="number" value="1" id="quantity" />
+                <div class="btn-group sales-unit">
+                    <button class="btn dropdown-toggle " data-toggle="dropdown">Styck <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Styck, 1 st</a></li>
+                    </ul>
+
+                </div>
+
+                <button class="btn buy">Lägg till i varukorgen</button>
+
+            </section>
+           
+        </section>
+
+       <div class="product-relations">
+            <section>
+                <h2>Liknande produkter</h2>
+                <ul class="product-list relation">
+
+                    @foreach (var product in Model.Similar)
+                    {
+                        <li class="current product-item">
+                            <div class="product-item-image">
+                                <a href='@Url.Action("Details", new { Id = product.Id })'>
+                                    <img src="http://placehold.it/480x480&text=Artikel">
+                                </a>
+                            </div>
+                            <div class="product-item-description">
+                                <h2><a class='current' href='@Url.Action("Details", new { Id = product.Id })'>@product.Name</a></h2>
+                                <p>@product.PriceNow kr</p>
+                            </div>
+                        </li>
+
+                    }
+
+                
+
+                </ul>
+            </section>
+
+            <section>
+                <h2>Andra köpte även</h2>
+                <ul class="product-list relation">
+                    <li class="current product-item">
+                        <div class="product-item-image">
+                            <a href="product.html">
+                                <img src="http://placehold.it/480x480&text=Artikel">
+                            </a>
+                        </div>
+                        <div class="product-item-description">
+                            <h2><a class='current' href="product.html">Artikelnamn</a></h2>
+                            <p>199 kr</p>
+                        </div>
+                    </li>
+
+                    <li class="current product-item">
+                        <div class="product-item-image">
+                            <a href="product.html">
+                                <img src="http://placehold.it/480x480&text=Artikel">
+                            </a>
+                        </div>
+                        <div class="product-item-description">
+                            <h2><a class='current' href="product.html">Artikelnamn</a></h2>
+                            <p>199 kr</p>
+                        </div>
+                    </li>
+
+                    <li class="current product-item">
+                        <div class="product-item-image">
+                            <a href="product.html">
+                                <img src="http://placehold.it/480x480&text=Artikel">
+                            </a>
+                        </div>
+                        <div class="product-item-description">
+                            <h2><a class='current' href="product.html">Artikelnamn</a></h2>
+                            <p>199 kr</p>
+                        </div>
+                    </li>
+
+                </ul>
+            </section>
+        </div>
