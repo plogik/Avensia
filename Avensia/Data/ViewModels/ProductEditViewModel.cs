@@ -18,9 +18,7 @@ namespace Avensia.Data.ViewModels
         public int ProductCategoryId { get; set; }
         public int QuantityMin { get; set; }
         public int QuantityMax { get; set; }
-        [Required]
-        public int Price { get; set; }
-        [Required]
+        public IList<ProductPrice> Prices { get; set; }
         public int PriceNow { get; set; }
 
         public static ProductEditViewModel From(Product product)
@@ -33,7 +31,7 @@ namespace Avensia.Data.ViewModels
                 ProductCategoryId = product.Category.Id,
                 QuantityMin = product.QuantityMin,
                 QuantityMax = product.QuantityMax,
-                Price = (int)product.Price,
+                Prices = product.Prices,
                 PriceNow = (int)product.PriceNow
             };
         }

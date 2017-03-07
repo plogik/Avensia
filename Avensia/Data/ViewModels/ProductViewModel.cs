@@ -12,8 +12,8 @@ namespace Avensia.Data.ViewModels
         public ProductCategory Category { get; set; }
         public int QuantityMin { get; set; } = 1;
         public int QuantityMax { get; set; } = int.MaxValue;
-        public int Price { get; set; }
         public int PriceNow { get; set; }
+        public IList<ProductPrice> Prices { get; set; }
         public IList<ProductViewModel> Similar { get; set; }
 
         public static ProductViewModel From(Product product)
@@ -26,7 +26,7 @@ namespace Avensia.Data.ViewModels
                 Category = product.Category,
                 QuantityMin = product.QuantityMin,
                 QuantityMax = product.QuantityMax,
-                Price = (int)product.Price,
+                Prices = product.Prices,
                 PriceNow = (int)product.PriceNow
             };
         }

@@ -11,7 +11,20 @@
             crossorigin="anonymous"></script>
     <script>
         $('#quantity').change(function (e) {
-            $('#subtotal').html(@Model.PriceNow * $('#quantity').val());
+            var q =  $('#quantity').val();
+            var price = @Model.PriceNow > 0 ? @Model.PriceNow : 0;
+
+            @if(Model.PriceNow == 0)
+            {
+                foreach (var p in Model.Prices.OrderByDescending(x => x.QuantityTo).ToList())
+                {
+                    <text>
+                    if(q <= @p.QuantityTo)
+                        price = @p.Price.ToString("0.##");
+                    </text>
+                }
+            }
+            $('#subtotal').html(price * q);
         });
     </script>
 }
@@ -56,16 +69,18 @@
                 <div class="prices">
                     
                     
-                    @if (Model.Price > Model.PriceNow)
+                    @if (Model.PriceNow > 0)
                     {
-                        <p class="reg-price">Ord. pris @Model.Price kr/st</p>
+                        <p class="reg-price">Ord. pris @Model.Prices[0].Price.ToString("0.##") kr/st</p>
                         <p class="best-price">@Model.PriceNow kr/st</p>
+                        <p><span id="subtotal">@Model.PriceNow</span> kr</p>
                     }
                     else
                     {
-                        <p class="reg-price">@Model.Price kr/st</p>
+                        <p class="reg-price">@Model.Prices[0].Price.ToString("0.##") kr/st</p>
+                        <p><span id="subtotal">@Model.Prices[0].Price.ToString("0.##")</span> kr</p>
                     }
-                    <p><span id="subtotal">@Model.PriceNow</span> kr</p>
+                    
                 </div>
 
 

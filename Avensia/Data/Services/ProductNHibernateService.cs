@@ -43,7 +43,7 @@ namespace Avensia.Data.Services
             product.Description = productViewModel.Description;
             product.QuantityMin = productViewModel.QuantityMin;
             product.QuantityMax = productViewModel.QuantityMax;
-            product.Price = productViewModel.Price;
+            product.Prices = productViewModel.Prices;
             product.PriceNow = productViewModel.PriceNow;
 
             productRepos.SaveOrUpdate(product);

@@ -158,8 +158,10 @@
     <Compile Include="Data\FluentNHibernateSessionFactory.cs" />
     <Compile Include="Data\Mappings\ProductCategoryMap.cs" />
     <Compile Include="Data\Mappings\ProductMap.cs" />
+    <Compile Include="Data\Mappings\ProductPriceMap.cs" />
     <Compile Include="Data\Models\Product.cs" />
     <Compile Include="Data\Models\ProductCategory.cs" />
+    <Compile Include="Data\Models\ProductPrice.cs" />
     <Compile Include="Data\Repositories\IProductRepository.cs" />
     <Compile Include="Data\Repositories\ProductNHibernateRepository.cs" />
     <Compile Include="Data\Services\IProductService.cs" />
