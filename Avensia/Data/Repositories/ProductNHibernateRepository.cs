@@ -39,5 +39,18 @@ namespace Avensia.Data.Repositories
                 }
             }
         }
+
+        public void Delete(ProductPrice productPrice)
+        {
+            var sessionFactory = FluentNHibernateSessionFactory.CreateSessionFactory();
+            using (var session = sessionFactory.OpenSession())
+            {
+                using (var tx = session.BeginTransaction())
+                {
+                    session.Delete(productPrice);
+                    tx.Commit();
+                }
+            }
+        }
     }
 }

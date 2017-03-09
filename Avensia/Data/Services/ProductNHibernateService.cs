@@ -38,13 +38,17 @@ namespace Avensia.Data.Services
 
         public void SaveOrUpdate(ProductEditViewModel productViewModel)
         {
-            var product = productRepos.GetById(productViewModel.Id);
+            var product = new Product();
+            product.Id = productViewModel.Id;
             product.Name = productViewModel.Name;
             product.Description = productViewModel.Description;
             product.QuantityMin = productViewModel.QuantityMin;
             product.QuantityMax = productViewModel.QuantityMax;
             product.Prices = productViewModel.Prices;
             product.PriceNow = productViewModel.PriceNow;
+
+            product.Prices = productViewModel.Prices;
+            product.Category = productRepos.GetById(productViewModel.Id).Category;
 
             productRepos.SaveOrUpdate(product);
         }

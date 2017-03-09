@@ -1,0 +1,54 @@
+﻿@model Avensia.Data.ViewModels.ProductEditViewModel
+
+@{
+    ViewBag.Title = "Edit prices for " + Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit prices for @Model.Name</h2>
+
+@using (Html.BeginForm("EditPrice", "Product", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.ProductCategoryId)
+    @Html.HiddenFor(m => m.Name)
+    @Html.HiddenFor(m => m.Description)
+    @Html.HiddenFor(m => m.QuantityMin)
+    @Html.HiddenFor(m => m.QuantityMax)
+    @Html.HiddenFor(m => m.PriceNow)
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Quantity from
+                </th>
+                <th>
+                    Quantity to
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Delete
+                </th>
+            </tr>
+        </thead>
+        <tbody id="childtable">
+            @Html.EditorFor(m => m.Prices)
+        </tbody>
+    </table>
+    <p>
+        <input name="command" type="submit" value="Add" />
+    </p>
+    <p>
+        <input name="command" type="submit" value="Remove Selected" />
+    </p>
+    <p>
+        @Html.ValidationSummary()
+        <input name="command" type="submit" value="Submit" />
+    </p>
+    <p>
+        @Html.ActionLink("Tillbaka till produktredigering", "Edit", "Product", new { Id = Model.Id }, null)
+    </p>
+}

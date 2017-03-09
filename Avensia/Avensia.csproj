@@ -180,6 +180,8 @@
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Product\EditPrice.cshtml" />
+    <Content Include="Views\Product\EditorTemplates\ProductPrice.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

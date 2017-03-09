@@ -12,5 +12,8 @@ namespace Avensia.Data.Repositories
         Product GetFirst();
         Product GetById(string id);
         void SaveOrUpdate(Product product);
+
+
+        void Delete(ProductPrice productPrice);
     }
 }

@@ -55,13 +55,12 @@
 
 
                 <p class="artnr">Artikelnummer: @Model.Id</p>
-                <!--<details open>
-                    <summary>Produktegenskaper</summary>
+                <details open>
+                    <summary>Admin</summary>
                     <ul>
-                        <li></li>
-                        <li></li>
+                        <li>@Html.ActionLink("Redigera", "Edit", "Product", new { Id = Model.Id }, null)</li>
                     </ul>
-                </details>-->
+                </details>
 
 
                 <p class="stock"><i class="icon-check"></i> Finns i lager</p>
